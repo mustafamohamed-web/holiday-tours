@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import "../styles/Tours.css";
 
 const Tours = ({ tours }) => {
-  console.log(tours);
+  const [readMore, setReadMore] = useState(false);
   return (
-    <div>
+    <article>
+      <h1>Tours Page !!!</h1>
       {tours.map((value) => {
         const { name, image, info, price } = value;
         return (
           <div>
-            <img src={image} alt="" />
-            <h1>{name}</h1>
-            <p>{info}</p>
-            <p>{price}</p>
+            <footer>
+              <img src={image} className="img" alt="" />
+
+              <h1>{name}</h1>
+              <p>
+                {readMore ? info : `${info.substring(0, 200)}...`}
+                <button
+                  className="btn"
+                  onClick={() => {
+                    setReadMore(!readMore);
+                  }}
+                >
+                  {readMore ? "show less" : "read more"}
+                </button>
+              </p>
+              <p className="para">£{price}</p>
+              <button>Not Intrested</button>
+            </footer>
           </div>
         );
       })}
-    </div>
+    </article>
   );
 };
 
