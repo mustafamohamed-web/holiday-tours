@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "../styles/Tours.css";
 
-const Tours = ({ tours }) => {
+const Tours = ({ tours, removeTour }) => {
   const [readMore, setReadMore] = useState(false);
   return (
     <article>
       <h1>Tours Page !!!</h1>
       {tours.map((value) => {
-        const { name, image, info, price } = value;
+        const { name, image, info, price, id } = value;
         return (
           <div>
             <footer>
@@ -26,7 +26,13 @@ const Tours = ({ tours }) => {
                 </button>
               </p>
               <p className="para">£{price}</p>
-              <button>Not Intrested</button>
+              <button
+                onClick={() => {
+                  removeTour(id);
+                }}
+              >
+                Not Intrested
+              </button>
             </footer>
           </div>
         );
